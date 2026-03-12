@@ -25,7 +25,6 @@ app.get("/", (req, res) => {
             v1: `${baseUrl}/api/v1`,
             v2: `${baseUrl}/api/v2`
         },
-        documentacion: `${baseUrl}/api-docs`
     })
 })
 
