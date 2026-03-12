@@ -1,0 +1,30 @@
+import swaggerUi from "swagger-ui-express"
+import swaggerJsdoc from "swagger-jsdoc"
+
+const swaggerOptions = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "API de Bancos",
+            version: "2.0.0",
+            description: "API REST para gestionar bancos y personas - Versiones V1 y V2"
+        },
+        servers: [
+            {
+                url: "http://localhost:3000/api/v1",
+                description: "Servidor V1"
+            },
+            {
+                url: "http://localhost:3000/api/v2",
+                description: "Servidor V2"
+            }
+        ]
+    },
+    apis: ["./server.js", "./routesV1.js", "./routesV2.js"]
+}
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions)
+
+export function setupSwagger(app) {
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+}
